@@ -1,0 +1,346 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* ชมพูพาสเทล */
+    --pink-main: #f4a6c0;
+    --pink-deep: #b84d75;
+    --pink-soft: #fde4ed;
+    /* สีผ้าอ่อนๆ */
+    --cream: #fff8f0;
+    --linen: #f6ece4;
+    --peach: #ffe5d9;
+    /* เขียวอ่อน (มิ้นต์ / เซจ) */
+    --mint: #e2f3e7;
+    --sage: #b5d8c1;
+    --sage-deep: #4f8a68;
+    /* ม่วง */
+    --lavender: #e9e1f5;
+    --purple: #c7b0e8;
+    --purple-deep: #7a56a8;
+    /* ตัวอักษร */
+    --text-dark: #4a3040;
+    --text-soft: #7f6477;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 48px 16px;
+    position: relative;
+    overflow-x: hidden;
+    color: var(--text-dark);
+    /* พื้นหลังไล่สี + ลายเส้นทอผ้าจางๆ */
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 4px),
+        linear-gradient(135deg, #ffe6f0 0%, #f6ece4 30%, #e4f4ea 65%, #e3d8f5 100%);
+}
+
+/* วงกลมตกแต่งพื้นหลัง */
+.blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.6;
+    z-index: 0;
+    animation: float 9s ease-in-out infinite;
+}
+.blob-1 { width: 320px; height: 320px; background: var(--pink-main); top: -80px; left: -80px; }
+.blob-2 { width: 300px; height: 300px; background: var(--purple); bottom: -70px; right: -70px; animation-delay: 2s; }
+.blob-3 { width: 240px; height: 240px; background: var(--sage); top: 45%; left: 6%; animation-delay: 4s; }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-24px); }
+}
+
+/* การ์ดหลัก */
+.card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 520px;
+    overflow: hidden;
+    background: rgba(255, 252, 248, 0.93);
+    border-radius: 32px;
+    border: 1px solid rgba(199, 176, 232, 0.5);
+    box-shadow:
+        0 25px 60px rgba(122, 86, 168, 0.18),
+        0 0 0 8px rgba(255, 255, 255, 0.55);
+    animation: fadeUp 0.9s ease both;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* แถบหัวการ์ด ชมพู > ม่วง > เขียว */
+.banner {
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 16px;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.5), transparent 40%),
+        linear-gradient(120deg, #f7b6cc 0%, #d4bdee 50%, #b9dcc6 100%);
+}
+
+.banner-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.97);
+    text-shadow: 0 1px 6px rgba(122, 86, 168, 0.35);
+}
+
+/* รูปโปรไฟล์ */
+.avatar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: -75px;
+}
+
+.avatar-ring {
+    padding: 6px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, #f4a6c0, #c7b0e8, #b5d8c1, #ffd9c7, #f4a6c0);
+    box-shadow: 0 10px 28px rgba(122, 86, 168, 0.3);
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    padding: 5px;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+}
+
+/* เนื้อหา */
+.content {
+    padding: 20px 32px 12px;
+    text-align: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 18px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    color: var(--purple-deep);
+    background: linear-gradient(90deg, var(--pink-soft), var(--lavender), var(--mint));
+    border-radius: 999px;
+}
+
+.name {
+    margin-top: 16px;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.nickname {
+    margin-top: 2px;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--pink-deep);
+}
+
+.subtitle {
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-soft);
+}
+
+/* เส้นคั่นลายประดับ */
+.divider {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 26px 0;
+    color: var(--sage-deep);
+}
+.divider span {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--purple), var(--sage), transparent);
+}
+
+/* ข้อมูลการศึกษา */
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: left;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: linear-gradient(120deg, var(--cream), var(--linen));
+    border: 1px solid rgba(244, 166, 192, 0.3);
+    border-radius: 18px;
+    transition: 0.3s;
+}
+.info-item:nth-child(2) {
+    background: linear-gradient(120deg, #f6fbf7, var(--mint));
+    border-color: rgba(181, 216, 193, 0.7);
+}
+.info-item:nth-child(3) {
+    background: linear-gradient(120deg, #faf7fe, var(--lavender));
+    border-color: rgba(199, 176, 232, 0.6);
+}
+.info-item:hover {
+    transform: translateX(6px);
+    box-shadow: 0 8px 20px rgba(122, 86, 168, 0.14);
+}
+
+.info-item .icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #fff;
+    background: linear-gradient(135deg, var(--pink-main), #d9a0d6);
+    border-radius: 14px;
+}
+.info-item:nth-child(2) .icon { background: linear-gradient(135deg, #8cc7a3, var(--sage-deep)); }
+.info-item:nth-child(3) .icon { background: linear-gradient(135deg, var(--purple), var(--purple-deep)); }
+
+.info-item small {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--text-soft);
+}
+.info-item p {
+    font-size: 14.5px;
+    font-weight: 500;
+}
+
+/* หัวข้อส่วนต่างๆ */
+.about, .interests {
+    margin-top: 28px;
+    text-align: left;
+}
+
+.about h3, .interests h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: var(--purple-deep);
+}
+.about h3 i { color: var(--pink-deep); }
+.interests h3 i { color: var(--sage-deep); }
+.about h3::after, .interests h3::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--purple), var(--sage), transparent);
+}
+
+.about p {
+    padding: 16px 18px;
+    font-size: 14.5px;
+    font-weight: 300;
+    line-height: 1.95;
+    color: var(--text-soft);
+    background: linear-gradient(120deg, var(--peach), #fdeef4);
+    border-left: 4px solid var(--purple);
+    border-radius: 6px 16px 16px 6px;
+}
+
+/* ความสนใจ ผลัดกัน ม่วง / ชมพู / เขียว */
+.interest-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.interest {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 8px;
+    font-size: 13px;
+    text-align: center;
+    color: var(--text-dark);
+    background: var(--lavender);
+    border-radius: 16px;
+    transition: 0.3s;
+}
+.interest i {
+    font-size: 20px;
+    color: var(--purple-deep);
+}
+.interest:nth-child(3n+2) { background: var(--pink-soft); }
+.interest:nth-child(3n+2) i { color: var(--pink-deep); }
+.interest:nth-child(3n) { background: var(--mint); }
+.interest:nth-child(3n) i { color: var(--sage-deep); }
+
+.interest:hover {
+    transform: translateY(-4px);
+    background: var(--purple);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(122, 86, 168, 0.25);
+}
+.interest:nth-child(3n+2):hover { background: var(--pink-main); }
+.interest:nth-child(3n):hover { background: #8cc7a3; }
+.interest:hover i { color: #fff; }
+
+/* คำพูด */
+.quote {
+    margin: 30px 0 10px;
+    padding: 18px 20px;
+    font-family: 'Playfair Display', 'Prompt', serif;
+    font-style: italic;
+    font-size: 15px;
+    text-align: center;
+    color: var(--purple-deep);
+    background: linear-gradient(120deg, var(--lavender), var(--pink-soft), var(--mint));
+    border-radius: 16px;
+}
+
+/* ท้ายการ์ด */
+.footer {
+    margin-top: 18px;
+    padding: 16px;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--text-soft);
+    background: linear-gradient(90deg, var(--pink-soft), var(--lavender), var(--mint));
+}
+
+/* มือถือ */
+@media (max-width: 480px) {
+    .content { padding: 20px 20px 10px; }
+    .name { font-size: 22px; }
+    .interest-grid { grid-template-columns: repeat(2, 1fr); }
+}
